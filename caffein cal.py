@@ -1,100 +1,61 @@
 import streamlit as st
 
-# Fungsi untuk menambahkan background warna coklat muda
-def set_background():
-    st.markdown(
-        """
-        <style>
-        body {
-            background-color: #f5e6d9;
-            color: #4a3f35;
-        }
-        .stButton > button {
-            background-color: #8b4513;
-            color: white;
-            border-radius: 8px;
-            font-size: 16px;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
-        .stButton > button:hover {
-            background-color: #a0522d;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-# Tambahkan background ke aplikasi
-set_background()
-
-# Fungsi untuk menghitung batas kafein harian
-def hitung_kafein_ideal(berat_badan_kg, usia, jenis_kelamin, konsumsi_kafein_mg):
-    # Batas kafein berdasarkan usia
-    if usia < 12:
-        batas_kafein_per_kg = 2.5
-    elif usia < 18:
-        batas_kafein_per_kg = 3.0
+# Fungsi untuk menghitung batas aman konsumsi kafein
+def calculate_safe_caffeine(age, gender):
+    if age < 18:
+        return 100  # Anak-anak
+    elif gender == "Laki-laki":
+        return 400  # Dewasa laki-laki
     else:
-        batas_kafein_per_kg = 5.0 if berat_badan_kg * 5.0 <= 400 else 400 / berat_badan_kg
-    
-    # Faktor jenis kelamin
-    faktor_jenis_kelamin = 0.9 if jenis_kelamin.lower() == "wanita" else 1.0
-    
-    # Hitung batas harian
-    batas_harian = berat_badan_kg * batas_kafein_per_kg * faktor_jenis_kelamin
-    
-    # Hitung sisa batas aman
-    sisa_kafein = batas_harian - konsumsi_kafein_mg
-    
-    # Status konsumsi
-    status = "Aman✅" if sisa_kafein >= 0 else "Berlebihan❗"
-    
-    return {
-        "batas_harian_mg": batas_harian,
-        "konsumsi_kafein_mg": konsumsi_kafein_mg,
-        "sisa_kafein_mg": sisa_kafein,
-        "status": status
+        return 300  # Dewasa perempuan
+
+# Fungsi untuk menghitung konsumsi kafein berdasarkan jenis minuman
+def calculate_caffeine_consumed(drink_type, ml):
+    caffeine_content = {
+        "Minuman Soda": 10,      # mg per 100 ml
+        "Minuman Coklat": 5,    # mg per 100 ml
+        "Teh": 20,              # mg per 100 ml
+        "Kopi": 40,             # mg per 100 ml
+        "Minuman Berenergi": 30 # mg per 100 ml
     }
+    return (caffeine_content.get(drink_type, 0) * ml) / 100
 
-# Streamlit app
-st.title("☕ Kalkulator Kafein Harian 📊")
+# Mengatur tema warna background
+st.markdown(
+    """
+    <style>
+    body {
+        background-color: #f0f8ff;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
-# Input data pengguna
-berat_badan = st.number_input("Masukkan berat badan (kg):", min_value=1.0, step=0.1)
-usia = st.number_input("Masukkan usia (tahun):", min_value=1, step=1)
-jenis_kelamin = st.selectbox("Pilih jenis kelamin:", ["Laki-laki", "Wanita"])
+# Judul aplikasi
+st.title("Kalkulator Konsumsi Kafein")
 
-st.write("Masukkan total konsumsi kafein hari ini (dalam ml):")
-# Input jumlah total ml
-ml_total = st.number_input("Total konsumsi minuman (ml):", min_value=0, step=1)
+# Input dari pengguna
+weight = st.number_input("Berat Badan (kg):", min_value=0.0, step=0.1)
+age = st.number_input("Usia (tahun):", min_value=0, step=1)
+gender = st.radio("Jenis Kelamin:", ["Laki-laki", "Perempuan"])
+drink_type = st.selectbox(
+    "Sumber Kafein:",
+    ["Minuman Soda", "Minuman Coklat", "Teh", "Kopi", "Minuman Berenergi"]
+)
+ml_consumed = st.number_input("Berapa ml yang diminum:", min_value=0, step=1)
 
-# Kandungan kafein per 100 ml berdasarkan rata-rata konsumsi
-# Anda bisa menyesuaikan angka ini sesuai target pengguna
-rata_rata_kafein_per_100ml = 25  # Rata-rata kafein dari semua jenis minuman
-
-# Hitung total kafein berdasarkan input
-total_kafein = (ml_total / 100) * rata_rata_kafein_per_100ml
-
-# Tombol hitung
+# Hitung hasil
 if st.button("Hitung"):
-    if berat_badan > 0 and usia > 0:
-        hasil = hitung_kafein_ideal(berat_badan, usia, jenis_kelamin, total_kafein)
-        
-        st.subheader("Hasil Kalkulator Kafein")
-        st.write(f"**Batas Harian:** {hasil['batas_harian_mg']:.2f} mg")
-        st.write(f"**Konsumsi Kafein:** {hasil['konsumsi_kafein_mg']:.2f} mg")
-        st.write(f"**Sisa Batas Aman:** {hasil['sisa_kafein_mg']:.2f} mg")
-        st.write(f"**Status:** {hasil['status']}")
-    else:
-        st.error("Mohon isi semua data dengan benar!")
+    safe_limit = calculate_safe_caffeine(age, gender)
+    caffeine_consumed = calculate_caffeine_consumed(drink_type, ml_consumed)
+    remaining_caffeine = max(safe_limit - caffeine_consumed, 0)
 
+    # Tampilkan hasil
+    st.subheader("Hasil Perhitungan:")
+    st.write(f"Batas konsumsi kafein harian yang aman: {safe_limit} mg")
+    st.write(f"Kafein yang telah Anda konsumsi: {caffeine_consumed:.2f} mg")
+    st.write(f"Jumlah kafein yang masih boleh dikonsumsi hari ini: {remaining_caffeine:.2f} mg")
 
-
-    
-
-
-  
-
-
+    if remaining_caffeine == 0:
+        st.warning("Anda telah mencapai atau melewati batas konsumsi kafein harian yang aman!")
