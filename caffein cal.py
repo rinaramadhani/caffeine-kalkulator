@@ -1,17 +1,16 @@
 import streamlit as st
 
-# Fungsi untuk menambahkan background
+# Fungsi untuk menambahkan background warna coklat muda
 def set_background():
     st.markdown(
         """
         <style>
         body {
-            background-image: url('https://www.transparenttextures.com/patterns/diagonal-noise.png');
-            background-size: cover;
-            background-color: #f7f7f7;
+            background-color: #f5e6d9;
+            color: #4a3f35;
         }
         .stButton > button {
-            background-color: #4CAF50;
+            background-color: #8b4513;
             color: white;
             border-radius: 8px;
             font-size: 16px;
@@ -20,7 +19,7 @@ def set_background():
             cursor: pointer;
         }
         .stButton > button:hover {
-            background-color: #45a049;
+            background-color: #a0522d;
         }
         </style>
         """,
@@ -67,24 +66,16 @@ berat_badan = st.number_input("Masukkan berat badan (kg):", min_value=1.0, step=
 usia = st.number_input("Masukkan usia (tahun):", min_value=1, step=1)
 jenis_kelamin = st.selectbox("Pilih jenis kelamin:", ["Laki-laki", "Wanita"])
 
-st.write("Masukkan sumber kafein yang dikonsumsi hari ini:")
+st.write("Masukkan total konsumsi kafein hari ini (dalam ml):")
+# Input jumlah total ml
+ml_total = st.number_input("Total konsumsi minuman (ml):", min_value=0, step=1)
 
-# Input sumber kafein
-kopi = st.number_input("Berapa cangkir kopi (240 ml):", min_value=0, step=1)
-teh = st.number_input("Berapa cangkir teh (240 ml):", min_value=0, step=1)
-minuman_energi = st.number_input("Berapa kaleng minuman energi (250 ml):", min_value=0, step=1)
-soda = st.number_input("Berapa kaleng soda (355 ml):", min_value=0, step=1)
-coklat = st.number_input("Berapa gelas minuman coklat (240 ml):", min_value=0, step=1)
+# Kandungan kafein per 100 ml berdasarkan rata-rata konsumsi
+# Anda bisa menyesuaikan angka ini sesuai target pengguna
+rata_rata_kafein_per_100ml = 25  # Rata-rata kafein dari semua jenis minuman
 
-# Kandungan kafein per unit (dalam mg)
-kafein_kopi = 95 * kopi
-kafein_teh = 47 * teh
-kafein_energi = 80 * minuman_energi
-kafein_soda = 40 * soda
-kafein_coklat = 20 * coklat
-
-# Total konsumsi kafein
-total_kafein = kafein_kopi + kafein_teh + kafein_energi + kafein_soda + kafein_coklat
+# Hitung total kafein berdasarkan input
+total_kafein = (ml_total / 100) * rata_rata_kafein_per_100ml
 
 # Tombol hitung
 if st.button("Hitung"):
@@ -93,8 +84,17 @@ if st.button("Hitung"):
         
         st.subheader("Hasil Kalkulator Kafein")
         st.write(f"**Batas Harian:** {hasil['batas_harian_mg']:.2f} mg")
-        st.write(f"**Konsumsi Kafein:** {hasil['konsumsi_kafein_mg']} mg")
+        st.write(f"**Konsumsi Kafein:** {hasil['konsumsi_kafein_mg']:.2f} mg")
         st.write(f"**Sisa Batas Aman:** {hasil['sisa_kafein_mg']:.2f} mg")
         st.write(f"**Status:** {hasil['status']}")
     else:
         st.error("Mohon isi semua data dengan benar!")
+
+
+
+    
+
+
+  
+
+
