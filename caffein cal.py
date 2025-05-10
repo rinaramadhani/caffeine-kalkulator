@@ -16,42 +16,15 @@ def calculate_caffeine_consumed(drink_type, ml):
         "Minuman Coklat": 5,    # mg per 100 ml
         "Teh": 20,              # mg per 100 ml
         "Kopi": 40,             # mg per 100 ml
-        "Minuman Berenergi": 30 # mg per 100 ml
+        "Minuman Berenergi": 30, # mg per 100 ml
+        "Matcha": 25,           # mg per 100 ml
+        "Espresso": 212,        # mg per 100 ml
+        "Teh Hijau": 12,        # mg per 100 ml
+        "Teh Hitam": 47,        # mg per 100 ml
+        "Cappuccino": 77,       # mg per 100 ml
+        "Americano": 94         # mg per 100 ml
     }
     return (caffeine_content.get(drink_type, 0) * ml) / 100
-
-# Mengatur tema warna background dan teks
-st.markdown(
-    """
-    <style>
-    body {
-        background-color: #e0f7fa;
-        color: #006064;
-        font-family: Arial, sans-serif;
-    }
-    .stButton>button {
-        background-color: #00796b;
-        color: white;
-        border-radius: 10px;
-        padding: 10px 20px;
-    }
-    .stButton>button:hover {
-        background-color: #004d40;
-        color: #e0f7fa;
-    }
-    .st-radio label {
-        color: #004d40;
-    }
-    .st-selectbox label {
-        color: #004d40;
-    }
-    .stNumberInput label {
-        color: #004d40;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
 
 # Judul aplikasi
 st.title("Kalkulator Konsumsi Kafein")
@@ -62,7 +35,7 @@ age = st.number_input("Usia (tahun):", min_value=0, step=1)
 gender = st.radio("Jenis Kelamin:", ["Laki-laki", "Perempuan"])
 drink_type = st.selectbox(
     "Sumber Kafein:",
-    ["Minuman Soda", "Minuman Coklat", "Teh", "Kopi", "Minuman Berenergi"]
+    ["Minuman Soda", "Minuman Coklat", "Teh", "Kopi", "Minuman Berenergi", "Matcha", "Espresso", "Teh Hijau", "Teh Hitam", "Cappuccino", "Americano"]
 )
 ml_consumed = st.number_input("Berapa ml yang diminum:", min_value=0, step=1)
 
