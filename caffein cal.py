@@ -14,7 +14,6 @@ def calculate_caffeine_consumed(drink_type, ml):
     caffeine_content = {
         "Minuman Soda": 10,      # mg per 100 ml
         "Minuman Coklat": 5,    # mg per 100 ml
-        "Teh": 20,              # mg per 100 ml
         "Kopi": 40,             # mg per 100 ml
         "Minuman Berenergi": 30, # mg per 100 ml
         "Matcha": 25,           # mg per 100 ml
@@ -35,7 +34,7 @@ age = st.number_input("Usia (tahun):", min_value=0, step=1)
 gender = st.radio("Jenis Kelamin:", ["Laki-laki", "Perempuan"])
 drink_type = st.selectbox(
     "Sumber Kafein:",
-    ["Minuman Soda", "Minuman Coklat", "Teh", "Kopi", "Minuman Berenergi", "Matcha", "Espresso", "Teh Hijau", "Teh Hitam", "Cappuccino", "Americano"]
+    ["Minuman Soda", "Minuman Coklat", "Kopi", "Minuman Berenergi", "Matcha", "Espresso", "Teh Hijau", "Teh Hitam", "Cappuccino", "Americano"]
 )
 ml_consumed = st.number_input("Berapa ml yang diminum:", min_value=0, step=1)
 
