@@ -1,4 +1,5 @@
 import streamlit as st
+import random
 
 # Fungsi untuk menghitung batas aman konsumsi kafein
 def calculate_safe_caffeine(age, gender):
@@ -59,3 +60,18 @@ if st.button("Hitung"):
 
     if remaining_caffeine == 0:
         st.warning("Anda telah mencapai atau melewati batas konsumsi kafein harian yang aman!")
+
+# Tambahkan game sederhana: Tebak Angka
+st.subheader("Game Sederhana: Tebak Angka")
+if 'random_number' not in st.session_state:
+    st.session_state.random_number = random.randint(1, 100)
+
+user_guess = st.number_input("Tebak angka antara 1 dan 100:", min_value=1, max_value=100, step=1)
+if st.button("Cek Tebakan"):
+    if user_guess == st.session_state.random_number:
+        st.success("Selamat! Anda menebak angka dengan benar!")
+        st.session_state.random_number = random.randint(1, 100)  # Reset angka acak
+    elif user_guess < st.session_state.random_number:
+        st.info("Tebakan Anda terlalu rendah. Coba lagi!")
+    else:
+        st.info("Tebakan Anda terlalu tinggi. Coba lagi!")
