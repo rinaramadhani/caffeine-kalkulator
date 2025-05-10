@@ -26,7 +26,7 @@ def hitung_kafein_terkonsumsi(jenis_minuman, ml):
     return (kandungan_kafein.get(jenis_minuman, 0) * ml) / 100
 
 # Judul aplikasi
-st.title("📊Kalkulator Batas Kafein Harian☕")
+st.title("Kalkulator Batas Kafein Harian☕")
 
 # Input dari pengguna
 berat_badan = st.number_input("Berat Badan (kg):", min_value=0.0, step=0.1)
