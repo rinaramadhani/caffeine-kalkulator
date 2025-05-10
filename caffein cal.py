@@ -51,6 +51,6 @@ if st.button("Hitung"):
     st.write(f"**Sisa Batas Aman:** {sisa_kafein:.2f} mg")
 
     if sisa_kafein > 0:
-        st.write(f"**Status:** Aman✅, Anda masih dapat mengonsumsi kafein😁.")
+        st.write(f"**Status:** Aman✅, Anda masih dalam batas konsumsi kafein yang aman😊.")
     else:
-        st.warning("**Status:** Tidak Aman❗, Anda telah mencapai atau melewati batas konsumsi kafein harian yang aman!😔")
+        st.warning("**Status:** Tidak Aman❗, Anda telah melewati batas konsumsi kafein harian yang aman!😔")
