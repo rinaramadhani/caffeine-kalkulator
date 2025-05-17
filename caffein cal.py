@@ -28,15 +28,41 @@ def hitung_kafein_terkonsumsi(jenis_minuman, ml):
 # Sidebar navigasi
 menu = st.sidebar.radio("Navigasi", ["Home", "Kalkulator Kafein", "Tentang Kami"])
 
+
 # Halaman Home
 if menu == "Home":
     st.title("Selamat Datang di Kalkulator Kafein☕")
     st.write("""
-    **Kalkulator Kafein Harian** membantu Anda mengetahui batas aman konsumsi kafein berdasarkan usia, jenis kelamin, 
+    *Kalkulator Kafein Harian* membantu Anda mengetahui batas aman konsumsi kafein berdasarkan usia, jenis kelamin, 
     dan jenis minuman. Gunakan fitur ini untuk menjaga kesehatan Anda dan keluarga! 
-    Pilih menu **Kalkulator Kafein** untuk memulai perhitungan. 🤩
-
+    Pilih menu *Kalkulator Kafein* untuk memulai perhitungan. 🤩
     """)
+
+    st.subheader("Apa Itu Kafein?🤔")
+    st.write("""
+    Kafein adalah senyawa alami yang ditemukan dalam daun dan biji berbagai tanaman seperti kopi, teh, dan kakao. 
+    Kafein bekerja sebagai stimulan yang mempengaruhi sistem saraf pusat untuk meningkatkan energi dan kewaspadaan sementara.
+    """)
+
+    st.subheader("Manfaat Kafein🤫:")
+    st.markdown("""
+    - ✅ Meningkatkan fokus dan konsentrasi  
+    - ✅ Membantu mengurangi rasa lelah  
+    - ✅ Meningkatkan performa olahraga  
+    - ✅ Dapat membantu suasana hati (mood booster)  
+    """)
+
+    st.subheader("Efek Samping Kafein Jika Berlebihan😵:")
+    st.markdown("""
+    - ❌ Gangguan tidur dan insomnia  
+    - ❌ Jantung berdebar (palpitasi)  
+    - ❌ Kecemasan dan gelisah  
+    - ❌ Gangguan pencernaan seperti sakit perut atau asam lambung naik  
+    - ❌ Ketergantungan kafein (caffeine withdrawal)  
+    """)
+
+    st.info("Ingat, konsumsi kafein yang bijak dapat memberikan manfaat. Namun, pastikan tetap dalam batas yang aman setiap harinya.")
+
 
 # Halaman Kalkulator Kafein
 elif menu == "Kalkulator Kafein":
