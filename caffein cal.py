@@ -28,7 +28,6 @@ def hitung_kafein_terkonsumsi(jenis_minuman, ml):
 # Sidebar navigasi
 menu = st.sidebar.radio("Navigasi", ["Home", "Kalkulator Kafein", "Tentang Kami"])
 
-
 # Halaman Home
 if menu == "Home":
     st.title("Selamat Datang di Kalkulator Kafein☕")
@@ -62,7 +61,6 @@ if menu == "Home":
     """)
 
     st.info("Ingat, konsumsi kafein yang bijak dapat memberikan manfaat. Namun, pastikan tetap dalam batas yang aman setiap harinya.")
-
 
 # Halaman Kalkulator Kafein
 elif menu == "Kalkulator Kafein":
