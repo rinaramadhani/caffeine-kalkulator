@@ -1,5 +1,48 @@
 import streamlit as st
 
+# Tambahkan background image & style
+st.markdown("""
+    <style>
+    .stApp {
+        background-image: url("https://i.pinimg.com/736x/9b/e8/32/9be83278b48a97b9218b58f236c2be28.jpg")
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .main {
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 0px;
+        border-radius: 10px;
+        margin-top: 5%;
+    }
+    .title {
+        color: Black;
+        text-align: center;
+    }
+    h3 {
+        color: Black;
+    }
+    .custom-text {
+        color: Black;
+        font-size: 16px;
+        font-family: 'Calibri', 'Segoe UI', sans-serif;
+    }
+    .fakta-seru {
+        position: fixed;
+        bottom: 10px;
+        left: 10px;
+        background-color: rgba(255,255,255,0.9);
+        padding: 12px 18px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-family: 'Segoe UI', sans-serif;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        max-width: 300px;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # Fungsi untuk menghitung batas aman konsumsi kafein
 def hitung_batas_aman_kafein(usia, jenis_kelamin):
     if usia < 18:
