@@ -110,9 +110,9 @@ elif menu == "Kalkulator Kafein":
     st.title("Kalkulator Batas Kafein Harian☕")
 
     # Input dari pengguna
-    berat_badan = st.number_input("Berat Badan (kg)⚖:", min_value=0.0, step=0.1)
+    berat_badan = st.number_input("Berat Badan (kg):", min_value=0.0, step=0.1)
     usia = st.number_input("Usia (tahun):", min_value=0, step=1)
-    jenis_kelamin = st.radio("Jenis Kelamin:", ["Laki-laki", "Perempuan"])
+    jenis_kelamin = st.radio("Jenis Kelamin:", ["Laki-laki♂", "Perempuan♀"])
     jenis_minuman = st.selectbox(
         "Sumber Kafein:",
         ["Minuman Soda", "Minuman Coklat", "Kopi", "Minuman Berenergi", "Matcha", "Espresso", "Teh Hijau", "Teh Hitam", "Cappuccino", "Americano"]
