@@ -1,5 +1,4 @@
 import streamlit as st
-
 # Tambahkan background image & style
 st.markdown("""
     <style>
@@ -103,7 +102,7 @@ if menu == "Home":
     - ❌ Ketergantungan kafein (caffeine withdrawal)  
     """)
 
-    st.info("Ingat, konsumsi kafein yang bijak dapat memberikan manfaat. Namun, pastikan tetap dalam batas yang aman setiap harinya.")
+    st.info("Ingat❗, konsumsi kafein yang bijak dapat memberikan manfaat. Namun, pastikan tetap dalam batas yang aman setiap harinya.")
 
 # Halaman Kalkulator Kafein
 elif menu == "Kalkulator Kafein":
